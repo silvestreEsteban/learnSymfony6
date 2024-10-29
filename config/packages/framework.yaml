@@ -8,9 +8,21 @@ framework:
 
     #esi: true
     #fragments: true
+    php_errors:
+        log: true
+
+    http_client:
+        scoped_clients:
+            githubContentClient:
+                base_uri: https://raw.githubusercontent.com
+                headers:
+                    Authorization: 'Token %env(GITHUB_TOKEN)%'
+
 
 when@test:
     framework:
         test: true
         session:
             storage_factory_id: session.storage.factory.mock_file
+
+
